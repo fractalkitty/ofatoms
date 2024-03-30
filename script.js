@@ -20,7 +20,7 @@ function setup() {
   );
   textSize(20);
   textAlign(CENTER, CENTER);
-  angleMode(DEGREES);
+  // angleMode(DEGREES);
   for (let i = 0; i < c1; i++) {
     bits[i] = { x: 0, y: -c1 / 2 + i };
   }
@@ -58,9 +58,9 @@ function draw() {
   translate(c1 / 2, c1 / 2);
   keyCheck();
   p = color(
-    150 + 100 * sin(scrollPos / 31 + startC),
-    180 + 100 * sin(scrollPos / 23 + startC),
-    190 + 100 * sin(scrollPos / 51 + startC)
+    150 + 100 * Math.sin((scrollPos / 31 + startC) / 60),
+    180 + 100 * Math.sin((scrollPos / 23 + startC) / 60),
+    190 + 100 * Math.sin((scrollPos / 51 + startC) / 60)
   );
 
   background(p);
@@ -71,18 +71,18 @@ function draw() {
       y = bits[i].y;
       x =
         xs[j].x +
-        (width / xs[j].a) * sin(-scrollPos + y / xs[j].d) * cos(scrollPos) -
-        (width / xs[j].e) * sin(-scrollPos / xs[j].c + y / xs[j].e);
+        (width / xs[j].a) * Math.sin(scrollPos / 60) * Math.cos(scrollPos / 60) -
+        (width / xs[j].e) * Math.sin((-scrollPos / xs[j].c + y / xs[j].e) / 60);
       y1 = bits[i].y;
       x1 =
         xs[j].x +
         xs[j].w +
-        (width / xs[j].a2) * sin(-scrollPos + y / xs[j].b) * cos(scrollPos) -
-        xs[j].w2 * sin(-scrollPos / xs[j].d + y / xs[j].b);
+        (width / xs[j].a2) * Math.sin((-scrollPos + y / xs[j].b) / 60) * Math.cos((scrollPos) / 60) -
+        xs[j].w2 * Math.sin((-scrollPos / xs[j].d + y / xs[j].b) / 60);
       stroke(
-        50 + 50 * sin((scrollPos + y) / xs[j].a2),
-        80 + 50 * sin((scrollPos + y) / (xs[j].b + xs[j].e)),
-        90 + 50 * sin((scrollPos + y) / xs[j].a),
+        50 + 50 * Math.sin((scrollPos + y) / xs[j].a2 / 60),
+        80 + 50 * Math.sin((scrollPos + y) / (xs[j].b + xs[j].e) / 60),
+        90 + 50 * Math.sin((scrollPos + y) / xs[j].a / 60),
         60
       );
       // circle(x,y,10)
@@ -93,9 +93,9 @@ function draw() {
     }
   }
   fill(
-    5 * sin(scrollPos / 31 + startC),
-    10 * sin(scrollPos / 23 + startC),
-    20 * sin(scrollPos / 51 + startC),
+    5 * Math.sin((scrollPos / 31 + startC) / 60),
+    10 * Math.sin((scrollPos / 23 + startC) / 60),
+    20 * Math.sin((scrollPos / 51 + startC) / 60),
     51
   );
   // noStroke()
@@ -108,7 +108,7 @@ function draw() {
     pop();
   }
   for (let i = 0; i < bubbles.length; i++) {
-    x = bubbles[i].x + bubbles[i].m * 2 * cos(t + scrollPos / bubbles[i].m);
+    x = bubbles[i].x + bubbles[i].m * 2 * Math.cos((t + scrollPos / bubbles[i].m) / 60);
     y =
       -height / 1.5 +
       ((bubbles[i].y + scrollPos / bubbles[i].m - (t * bubbles[i].m) / 5) %
@@ -136,30 +136,30 @@ function orbits() {
   col1 = color(200, 240, 255);
   col1.setAlpha(50);
   fill(col1);
-  x = (c1 / 2) * sin(scrollPos / 10) * cos(scrollPos + 0);
-  y = (c1 / 2) * sin(scrollPos / 10) * sin(scrollPos + 0);
+  x = (c1 / 2) * Math.sin(scrollPos / 10 / 60) * Math.cos(scrollPos / 60);
+  y = (c1 / 2) * Math.sin(scrollPos / 10 / 60) * Math.sin(scrollPos / 60);
   circle(x, y, 10);
   circle(
-    x + (c1 / orbit1) * sin(scrollPos),
-    y + (c1 / orbit1) * cos(scrollPos),
+    x + (c1 / orbit1) * Math.sin(scrollPos / 60),
+    y + (c1 / orbit1) * Math.cos(scrollPos / 60),
     5
   );
   noFill();
   stroke(col1);
   circle(x, y, (c1 / orbit1) * 2);
-  x = (c1 / 2) * sin(scrollPos / 10 + 180) * cos(scrollPos + 0);
-  y = (c1 / 2) * sin(scrollPos / 10 + 180) * sin(scrollPos + 0);
+  x = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI / 2) * cos(scrollPos / 60);
+  y = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI / 2) * sin(scrollPos / 60);
   fill(col1);
   circle(x, y, 10);
   circle(
-    x + (c1 / orbit1) * sin(scrollPos + 180),
-    y + (c1 / orbit1) * cos(scrollPos + 180),
+    x + (c1 / orbit1) * Math.sin(scrollPos / 60 + PI / 2),
+    y + (c1 / orbit1) * Math.cos(scrollPos / 60 + PI / 2),
     5
   );
   noFill();
   stroke(col1);
   circle(x, y, (c1 / orbit1) * 2);
-  circle(0, 0, c1 * sin(scrollPos / 10));
+  circle(0, 0, c1 * Math.sin(scrollPos / 10 / 60));
   pop();
 }
 function keyCheck() {
@@ -217,9 +217,9 @@ function portHole() {
   noStroke();
   rd = c1 / 2.5;
   beginShape();
-  for (let i = 0; i <= 180; i++) {
-    x = rd * cos(i);
-    y = rd * sin(i);
+  for (let i = 0; i <= PI; i += PI / 100) {
+    x = rd * Math.cos(i);
+    y = rd * Math.sin(i);
     vertex(x, y);
   }
   vertex(-c1, 0);
@@ -227,10 +227,11 @@ function portHole() {
   vertex(c1, c1);
   vertex(c1, 0);
   endShape(CLOSE);
+  noStroke()
   beginShape();
-  for (let i = 180; i <= 360; i++) {
-    x = rd * cos(i);
-    y = rd * sin(i);
+  for (let i = PI; i <= TWO_PI; i += PI / 100) {
+    x = rd * Math.cos(i);
+    y = rd * Math.sin(i);
     vertex(x, y);
   }
   vertex(c1, 0);
