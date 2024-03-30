@@ -147,13 +147,13 @@ function orbits() {
   noFill();
   stroke(col1);
   circle(x, y, (c1 / orbit1) * 2);
-  x = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI / 2) * cos(scrollPos / 60);
-  y = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI / 2) * sin(scrollPos / 60);
+  x = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI) * cos(scrollPos / 60);
+  y = (c1 / 2) * Math.sin(scrollPos / 10 / 60 + PI) * sin(scrollPos / 60);
   fill(col1);
   circle(x, y, 10);
   circle(
-    x + (c1 / orbit1) * Math.sin(scrollPos / 60 + PI / 2),
-    y + (c1 / orbit1) * Math.cos(scrollPos / 60 + PI / 2),
+    x + (c1 / orbit1) * Math.sin(scrollPos / 60 + PI),
+    y + (c1 / orbit1) * Math.cos(scrollPos / 60 + PI),
     5
   );
   noFill();
