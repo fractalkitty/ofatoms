@@ -9,6 +9,8 @@ let xs = [];
 let lines = 0;
 let orbit1 = 20;
 function setup() {
+  describe(
+    'canvas with a circular porthole showing satin like structures that change colors with a spiral of orbits moving in and out. it is responsive to scroling and as it scrolls a poem is shown: breathe in, deeply, breathe out, fully,take a moment and notice,for there were breaths before",breaths at a beginning, generations,the winds breath, the oceans breath,an ebb and flow, zoom out or in, to see more, of atoms, of stars, of existence, breathe in as a tide pulls, breathe out as a star expands, breathe in finite moments, breathe out finite time, into the infinite , and then');
   c1 = max(400, 0.97 * min(windowWidth, windowHeight));
   createCanvas(c1, c1);
   textFont("Courier New");
